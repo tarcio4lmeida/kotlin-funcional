@@ -1,4 +1,5 @@
 import listas.Livro
+import listas.imprimeComMarcadores
 
 fun main() {
     val livro1 = Livro(
@@ -56,12 +57,32 @@ fun main() {
         }
 
     println(titulos)
+
+    val listaLivrosComNulos: MutableList<Livro?> = mutableListOf(
+
+        null,
+        Livro(
+            titulo = "Grande Sertão: Veredas",
+            autor = "João Guimarães Rosa",
+            anoPublicacao = 1956
+        ),
+        Livro(
+            titulo = "Minha vida de menina",
+            autor = "Helena Morley",
+            anoPublicacao = 1942,
+            editora = "Editora A"
+        ),
+        Livro(
+            titulo = "Memórias Póstumas de Brás Cubas",
+            autor = "Machado de Assis",
+            anoPublicacao = 1881
+        ),
+        Livro(
+            titulo = "Iracema",
+            autor = "José de Alencar",
+            anoPublicacao = 1865,
+            editora = "Editora B"
+        )
+    )
 }
 
-fun List<Livro>.imprimeComMarcadores() {
-    val textoFormatado = this.joinToString(separator = "\n") {
-        " - ${it.titulo} de ${it.autor}"
-    }
-
-    println(" ### Lista de Livros ### \n $textoFormatado")
-}
