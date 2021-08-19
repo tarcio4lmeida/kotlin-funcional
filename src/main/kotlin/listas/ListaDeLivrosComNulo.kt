@@ -1,9 +1,8 @@
 package listas
 
 fun main() {
-    val listaLivrosComNulos: MutableList<Livro?> = mutableListOf(
+    val listaLivrosComNulos: MutableList<Livro> = mutableListOf(
 
-        null,
         Livro(
             titulo = "Grande Sertão: Veredas",
             autor = "João Guimarães Rosa",
@@ -28,5 +27,9 @@ fun main() {
         )
     )
 
-    listaLivrosComNulos.imprimeComMarcadores()
-}
+    listaLivrosComNulos
+        .groupBy { it.editora ?: "Editora Desconhecida" }
+        .forEach { (editora, livros) ->
+            println("$editora: ${livros.joinToString { it?.titulo }}")
+        }
+    }
