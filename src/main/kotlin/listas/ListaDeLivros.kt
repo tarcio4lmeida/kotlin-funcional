@@ -31,7 +31,7 @@ fun main() {
     livros.add(
         Livro(
             titulo = "Sagarana",
-            autor = "Guimaraes Rosa",
+            autor = "João Guimarães Rosa",
             anoPublicacao = 1956
         )
     )
@@ -40,18 +40,26 @@ fun main() {
 
     livros.imprimeComMarcadores()
 
-    val ordenadoAnoPublicacao:List<Livro> = livros.sorted()
+    val ordenadoAnoPublicacao: List<Livro> = livros.sorted()
 
     ordenadoAnoPublicacao.imprimeComMarcadores()
 
-    val ordenadoPorAutor = livros.sortedBy{
+    val ordenadoPorAutor = livros.sortedBy {
         it.autor
     }.imprimeComMarcadores()
 
+    val titulos: List<String> = livros
+        .filter { it.autor.startsWith("J") }
+        .sortedBy { it.anoPublicacao }
+        .map {
+            it.titulo
+        }
+
+    println(titulos)
 }
 
-fun List<Livro>.imprimeComMarcadores(){
-    val textoFormatado =  this.joinToString (separator = "\n"){
+fun List<Livro>.imprimeComMarcadores() {
+    val textoFormatado = this.joinToString(separator = "\n") {
         " - ${it.titulo} de ${it.autor}"
     }
 
