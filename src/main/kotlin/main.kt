@@ -1,35 +1,29 @@
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 fun main() {
-    val idades: IntArray = intArrayOf(10, 18, 33, 40, 67)
 
-    val media = idades.average()
+    val salarios: Array<BigDecimal> = bigDecimalArrayOf("1500.55", "2000.00", "5000.00", "10000.00")
 
-    println("maiorIdade: $media")
+    println(salarios.contentToString())
 
-    val todosMaiores = idades.all{
-        it > 18
+    val aumento: BigDecimal = "1.1".toBigDecimal()
+    val salariosComAumento = salarios.map { salario ->
+        if (salario < "5000.00".toBigDecimal()) {
+            salario + "500.00".toBigDecimal()
+        } else {
+            (salario * aumento).setScale(2, RoundingMode.UP)
+        }
+    }.toTypedArray()
+
+    println(salariosComAumento.contentToString())
+
+}
+
+fun bigDecimalArrayOf(vararg valores: String): Array<BigDecimal> {
+    return Array<BigDecimal>(valores.size) { i ->
+        valores[i].toBigDecimal()
     }
-    println("todos maiores?: $todosMaiores")
-
-    val peloMenosUmMaior = idades.any{
-        it >=18
-    }
-    println("Pelo menos um maior?: $peloMenosUmMaior")
-
-    val maiores = idades.filter {
-        it >= 18
-    }
-
-    println("Maiores que 18: $maiores")
-
-    val alguemMaiorQue18 = idades.find {
-        it >= 18
-    }
-
-    println("Maiores que 18: $alguemMaiorQue18")
-
-
-
 }
 
 
